@@ -4,5 +4,9 @@ diff a/README.md b/README.md	(rejected hunks)
  
  Das ist ein Projekt zu Schulungszwecken der GPB.
 +
+<<<<<<< HEAD
 +sld
+=======
++// Die Datei wird jetzt getestet
+>>>>>>> bb5fdc0 (fix)
 \ No newline at end of file
