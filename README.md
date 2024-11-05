@@ -2,4 +2,4 @@
 
 Das ist ein Projekt zu Schulungszwecken der GPB.
 
-sld
+Wir bauen eine Webseite mit html, css, php und Mysql
