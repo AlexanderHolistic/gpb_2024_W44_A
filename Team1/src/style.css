@@ -3,9 +3,16 @@ body {
 	 }
 
 h1 {
-       background-color: green;
        color: white;
+<<<<<<< HEAD
+=======
+	   margin-right: 450px;
+>>>>>>> d1a9437 (Änderung im Design)
     }
+
+h1 span {
+	font-size: 50pt;
+}
 	
 h1:hover {
 	color: red;
@@ -14,3 +21,19 @@ h1:hover {
 h1:active {
 	color: blue;
 }
+<<<<<<< HEAD
+=======
+
+div {
+	display: flex;
+	justify-content: flex-end;
+}
+
+h1 span {
+	width: 500px;
+}
+
+.labelsStuff {
+	display: block;
+}
+>>>>>>> d1a9437 (Änderung im Design)

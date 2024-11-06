@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1><big>N</big><small>OTIZ</small><big>Y</big></h1>
-    <div class="logo-container">
-        <img src="logo.png" alt="Notizy Logo" class="logo">
+    
+    <div class="logo und h1-container">
+		<h1><big><span>N</big><small>OTIZ</small><big>Y</span></big></h1>
+        <img src="logo.png" alt="Notizy Logo" class="logo" width=300>
     </div>
 
+	
+	<div class="labelsStuff">
     <form action="speichern.php" method="POST">
         <label for="userText">Geben Sie Ihren Text ein:</label>
         <input type="text" id="userText" name="userText" placeholder="Hier Text eingeben">
         <input type="submit" id="safe" name="speichern" value="Speichern">
     </form>
+	</div>
 
     <div id="notizen">
         <?php
@@ -29,8 +33,11 @@
             echo "<div class='notiz-anzeige' id='anzeige_{$row['id']}'>";
             echo "<p>" . htmlspecialchars($row['notiz']) . "</p>";
             echo "<div class='button-container'>";
+			echo "<form method='POST' action='bearbeiten.php' style='display: inline;'>";
+			//bearbeiten geht nicht
             echo "<button onclick='bearbeiten({$row['id']})' class='edit-btn'>Bearbeiten</button>";
             echo "<form method='POST' action='loeschen.php' style='display: inline;'>";
+			//löschen geht nicht
             echo "<button type='submit' name='delete' value='{$row['id']}' class='delete-btn'>Löschen</button>";
             echo "</form>";
             echo "</div>";
