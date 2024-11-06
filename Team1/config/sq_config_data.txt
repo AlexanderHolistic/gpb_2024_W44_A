@@ -3,3 +3,11 @@ SQL Server
 
 host adress: 172.16.1.49
 host port: 3306
+
+Tabellen
+-------------
+
+Tabelle: notizen
+Name	Typ	Kollation	Attribute		
+1*	id	Primärschlüssel	int(11)			AUTO_INCREMENT	
+2	notiz	text		utf8mb4_general_ci		
