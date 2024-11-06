@@ -1,8 +1,16 @@
 body {
-	background-color: yellow;
+	background-color: rgb(240 229 84);
 	 }
 
 h1 {
        background-color: green;
        color: white;
     }
+	
+h1:hover {
+	color: red;
+}
+
+h1:active {
+	color: blue;
+}
