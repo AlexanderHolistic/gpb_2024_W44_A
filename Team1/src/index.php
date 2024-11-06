@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notizy</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1><big>N</big><small>OTIZ</small><big>Y</big></h1>
