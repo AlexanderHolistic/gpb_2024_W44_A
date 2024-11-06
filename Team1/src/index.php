@@ -34,7 +34,21 @@
             echo "<button type='submit' name='delete' value='{$row['id']}' class='delete-btn'>Löschen</button>";
             echo "</form>";
             echo "</div>";
-            echo "</div>";}
+            echo "</div>";
+            
+            // Bearbeitungsmodus (standardmäßig versteckt)
+            echo "<div class='notiz-bearbeiten' id='bearbeiten_{$row['id']}' style='display:none;'>";
+            echo "<form method='POST' action='bearbeiten.php'>";  // Hier wurde die action hinzugefügt
+            echo "<input type='text' name='editText' value='" . htmlspecialchars($row['notiz']) . "'>";
+            echo "<input type='hidden' name='edit' value='{$row['id']}'>";
+            echo "<div class='button-container'>";
+            echo "<button type='submit' class='save-btn'>Speichern</button>";
+            echo "<button type='button' onclick='abbrechen({$row['id']})' class='cancel-btn'>Abbrechen</button>";
+            echo "</div>";
+            echo "</form>";
+            echo "</div>";
+            echo "</div>";
+        }
         $db->close();
         ?>
     </div>
