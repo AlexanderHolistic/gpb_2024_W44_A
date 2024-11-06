@@ -23,7 +23,7 @@
     <form method="POST">
         <label for="userText">Geben Sie Ihren Text ein:</label>
         <input type="text" id="userText" name="userText" placeholder="Hier Text eingeben">
-        <input type="submit" id="safe" name="speichern" value="Speichern" src='save_disk.png'>
+        <input type="submit" id="safe" name="speichern" value="Speichern">
     </form>
 
     <div id="notizen">
