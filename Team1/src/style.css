@@ -1,8 +1,26 @@
 body {
-	background-color: yellow;
+	background-color: rgb(217 176 90);
 	 }
 
 h1 {
        background-color: green;
        color: white;
+	   margin-right: 400px;
     }
+	
+h1:hover {
+	color: red;
+}
+
+h1:active {
+	color: blue;
+}
+
+div {
+	display: flex;
+	justify-content: flex-end;
+}
+
+h1 span {
+	width: 500px;
+}
