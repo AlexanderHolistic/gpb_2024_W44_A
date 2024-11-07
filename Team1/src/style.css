@@ -1,6 +1,23 @@
-body {
-	background-color: rgb(193,205,205);
-	 }
+body{
+    background-color: rgb(255, 73, 73);
+    font-family: Arial;
+    border-radius: 15px;
+}
+
+#div1{
+    border-radius: 15px;
+    background-color: rgb(104, 187, 255);
+    border-style: groove;
+    border-color: cadetblue;
+    border: 2px solid black;
+}
+
+#div2{
+    font-family: Arial;
+    border-radius: 15px;
+    background-color: rgb(255, 73, 73);
+    border: 2px solid black;
+}
 
 h1 {
        background-color: green;
