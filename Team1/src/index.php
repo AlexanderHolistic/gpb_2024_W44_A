@@ -7,20 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
-    <div class="logo und h1-container">
-		<h1><big><span>N</big><small>OTIZ</small><big>Y</span></big></h1>
-        <img src="logo.png" alt="Notizy Logo" class="logo" width=300>
+    <h1><big>N</big><small>OTIZ</small><big>Y</big></h1>
+    <div class="logo-container">
+        <img src="logo.png" alt="Notizy Logo" class="logo">
     </div>
 
-	
-	<div class="labelsStuff">
     <form action="speichern.php" method="POST">
         <label for="userText">Geben Sie Ihren Text ein:</label>
         <input type="text" id="userText" name="userText" placeholder="Hier Text eingeben">
         <input type="submit" id="safe" name="speichern" value="Speichern">
     </form>
-	</div>
 
     <div id="notizen">
         <?php
