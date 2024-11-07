@@ -29,11 +29,8 @@
             echo "<div class='notiz-anzeige' id='anzeige_{$row['id']}'>";
             echo "<p>" . htmlspecialchars($row['notiz']) . "</p>";
             echo "<div class='button-container'>";
-			echo "<form method='POST' action='bearbeiten.php' style='display: inline;'>";
-			//bearbeiten geht nicht
             echo "<button onclick='bearbeiten({$row['id']})' class='edit-btn'>Bearbeiten</button>";
             echo "<form method='POST' action='loeschen.php' style='display: inline;'>";
-			//löschen geht nicht
             echo "<button type='submit' name='delete' value='{$row['id']}' class='delete-btn'>Löschen</button>";
             echo "</form>";
             echo "</div>";
