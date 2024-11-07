@@ -1,18 +1,15 @@
 <?php
 $db = new mysqli('localhost', 'root', '', 'team1_notizy');
-
 // Speichern einer neuen Notiz
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['speichern'])) {
     $notiz = $db->real_escape_string($_POST['userText']);
     $db->query("INSERT INTO notizen (notiz) VALUES ('$notiz')");
 }
-
 // Löschen einer Notiz
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loeschen'])) {
     $id = (int)$_POST['loeschen'];
     $db->query("DELETE FROM notizen WHERE id = $id");
 }
-
 // Bearbeiten einer Notiz
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'])) {
     $id = (int)$_POST['notiz_id'];
@@ -20,16 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'
     $db->query("UPDATE notizen SET notiz = '$notiz' WHERE id = $id");
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
     <title>Notizy</title>
 </head>
-<body style="font-family: Arial; background-color: #f0f0f0; margin: 0; padding: 0;">
-    <h1 style="text-align: center; color: #333; padding: 20px 0; margin: 0; background-color: white;">Notizy</h1>
-
+<body style="font-family: Arial; background-color: #87CEEB; margin: 0; padding: 0;">
+    <h1 style="text-align: center; color: #333; padding: 20px 0; margin: 0; background-color: white;">NotizY</h1>
     <div style="display: flex; margin: 20px; gap: 20px; height: calc(100vh - 100px);">
         <!-- Linke Spalte: Liste der Notizen -->
         <div style="flex: 1; background: white; padding: 20px; overflow-y: auto;">
@@ -53,10 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'
             }
             ?>
         </div>
-
         <!-- Vertikale Linie -->
         <div style="width: 1px; background-color: #ccc;"></div>
-
         <!-- Rechte Spalte: Bearbeiten/Erstellen -->
         <div style="flex: 2; background: white; padding: 20px;">
             <?php
