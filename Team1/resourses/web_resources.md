@@ -3,6 +3,11 @@
 
 https://wiki.selfhtml.org/wiki/SELFHTML
 
+## HTML & JS
+------
+
+https://www.dhiwise.com/post/step-by-step-tutorial-crafting-an-html-dynamic-list
+
 ## PHP
 ------
 
