@@ -1,68 +1,89 @@
+<?php
+$db = new mysqli('localhost', 'root', '', 'team1_notizy');
+
+// Speichern einer neuen Notiz
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['speichern'])) {
+    $notiz = $db->real_escape_string($_POST['userText']);
+    $db->query("INSERT INTO notizen (notiz) VALUES ('$notiz')");
+}
+
+// Löschen einer Notiz
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loeschen'])) {
+    $id = (int)$_POST['loeschen'];
+    $db->query("DELETE FROM notizen WHERE id = $id");
+}
+
+// Bearbeiten einer Notiz
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'])) {
+    $id = (int)$_POST['notiz_id'];
+    $notiz = $db->real_escape_string($_POST['editText']);
+    $db->query("UPDATE notizen SET notiz = '$notiz' WHERE id = $id");
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notizy</title>
-    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1><big>N</big><small>OTIZ</small><big>Y</big></h1>
-    <div class="logo-container">
-        <img src="logo.png" alt="Notizy Logo" class="logo">
-    </div>
+<body style="font-family: Arial; background-color: #f0f0f0; margin: 0; padding: 0;">
+    <h1 style="text-align: center; color: #333; padding: 20px 0; margin: 0; background-color: white;">Notizy</h1>
 
-    <form action="speichern.php" method="POST">
-        <label for="userText">Geben Sie Ihren Text ein:</label>
-        <input type="text" id="userText" name="userText" placeholder="Hier Text eingeben">
-        <input type="submit" id="safe" name="speichern" value="Speichern">
-    </form>
-
-    <div id="notizen">
-        <?php
-        $db = new mysqli('localhost', 'root', '', 'team1_notizy');
-        $result = $db->query("SELECT * FROM notizen ORDER BY id ASC");
-        
-        while ($row = $result->fetch_assoc()) {
-            echo "<div class='notiz-container'>";
-            // Normaler Anzeigemodus
-            echo "<div class='notiz-anzeige' id='anzeige_{$row['id']}'>";
-            echo "<p>" . htmlspecialchars($row['notiz']) . "</p>";
-            echo "<div class='button-container'>";
-            echo "<button onclick='bearbeiten({$row['id']})' class='edit-btn'>Bearbeiten</button>";
-            echo "<form method='POST' action='loeschen.php' style='display: inline;'>";
-            echo "<button type='submit' name='delete' value='{$row['id']}' class='delete-btn'>Löschen</button>";
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
+    <div style="display: flex; margin: 20px; gap: 20px; height: calc(100vh - 100px);">
+        <!-- Linke Spalte: Liste der Notizen -->
+        <div style="flex: 1; background: white; padding: 20px; overflow-y: auto;">
+            <h2>Notizen Liste</h2>
+            <?php
+            $result = $db->query("SELECT * FROM notizen ORDER BY id DESC");
             
-            // Bearbeitungsmodus (standardmäßig versteckt)
-            echo "<div class='notiz-bearbeiten' id='bearbeiten_{$row['id']}' style='display:none;'>";
-            echo "<form method='POST' action='bearbeiten.php'>";  // Hier wurde die action hinzugefügt
-            echo "<input type='text' name='editText' value='" . htmlspecialchars($row['notiz']) . "'>";
-            echo "<input type='hidden' name='edit' value='{$row['id']}'>";
-            echo "<div class='button-container'>";
-            echo "<button type='submit' class='save-btn'>Speichern</button>";
-            echo "<button type='button' onclick='abbrechen({$row['id']})' class='cancel-btn'>Abbrechen</button>";
-            echo "</div>";
-            echo "</form>";
-            echo "</div>";
-            echo "</div>";
-        }
-        $db->close();
-        ?>
+            while ($row = $result->fetch_assoc()) {
+                echo "<div style='border-bottom: 1px solid #eee; padding: 10px 0;'>";
+                echo "<p style='margin: 0 0 10px 0;'>" . htmlspecialchars(substr($row['notiz'], 0, 100)) . "...</p>";
+                echo "<div style='display: flex; gap: 10px;'>";
+                echo "<form method='POST' style='display: inline;'>";
+                echo "<button type='submit' name='bearbeiten' value='" . $row['id'] . "' style='background: #2196F3; color: white; padding: 5px 10px; border: none; cursor: pointer;'>Bearbeiten</button>";
+                echo "</form>";
+                
+                echo "<form method='POST' style='display: inline;'>";
+                echo "<button type='submit' name='loeschen' value='" . $row['id'] . "' style='background: #f44336; color: white; padding: 5px 10px; border: none; cursor: pointer;'>Löschen</button>";
+                echo "</form>";
+                echo "</div>";
+                echo "</div>";
+            }
+            ?>
+        </div>
+
+        <!-- Vertikale Linie -->
+        <div style="width: 1px; background-color: #ccc;"></div>
+
+        <!-- Rechte Spalte: Bearbeiten/Erstellen -->
+        <div style="flex: 2; background: white; padding: 20px;">
+            <?php
+            // Wenn eine Notiz bearbeitet wird
+            if (isset($_POST['bearbeiten'])) {
+                $id = (int)$_POST['bearbeiten'];
+                $edit_result = $db->query("SELECT * FROM notizen WHERE id = $id");
+                $edit_row = $edit_result->fetch_assoc();
+                
+                echo "<h2>Notiz bearbeiten</h2>";
+                echo "<form method='POST'>";
+                echo "<textarea name='editText' style='width: 100%; height: 300px; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd;'>" 
+                     . htmlspecialchars($edit_row['notiz']) . "</textarea><br>";
+                echo "<input type='hidden' name='notiz_id' value='" . $id . "'>";
+                echo "<button type='submit' name='bearbeiten_speichern' style='background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;'>Speichern</button>";
+                echo "</form>";
+            } else {
+                // Formular für neue Notiz
+                echo "<h2>Neue Notiz erstellen</h2>";
+                echo "<form method='POST'>";
+                echo "<textarea name='userText' style='width: 100%; height: 300px; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd;'></textarea><br>";
+                echo "<button type='submit' name='speichern' style='background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;'>Speichern</button>";
+                echo "</form>";
+            }
+            ?>
+        </div>
     </div>
-
-    <script>
-    function bearbeiten(id) {
-        document.getElementById('anzeige_' + id).style.display = 'none';
-        document.getElementById('bearbeiten_' + id).style.display = 'block';
-    }
-
-    function abbrechen(id) {
-        document.getElementById('anzeige_' + id).style.display = 'block';
-        document.getElementById('bearbeiten_' + id).style.display = 'none';
-    }
-    </script>
 </body>
 </html>
+<?php $db->close(); ?>
