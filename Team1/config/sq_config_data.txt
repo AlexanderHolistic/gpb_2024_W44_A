@@ -3,6 +3,8 @@ SQL Server
 
 host adress: 172.16.1.49
 host port: 3306
+user: team1
+pw: team1!
 
 Tabellen
 -------------
