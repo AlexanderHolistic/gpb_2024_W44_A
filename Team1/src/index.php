@@ -1,5 +1,5 @@
 <?php
-$db = new mysqli('localhost', 'root', '', 'team1_notizy');
+$db = new mysqli('172.16.1.49', 'team1', 'team1!', 'team1_notizy');
 // Speichern einer neuen Notiz
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['speichern'])) {
     $notiz = $db->real_escape_string($_POST['userText']);
