@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'
                 echo "<h2>Neue Notiz erstellen</h2>";
                 echo "<form method='POST'>";
                 echo "<textarea name='userText' style='width: 100%; height: 300px; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd;'></textarea><br>";
-                echo "<button type='submit' name='speichern' style='background: #4CAF50; color: white; padding: 10px 20px; border: none; cursor: pointer;'>Speichern</button>";
+                echo "<button type='submit' name='speichern' style='background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 15px; cursor: pointer;'>Speichern</button>";
                 echo "</form>";
             }
             ?>
