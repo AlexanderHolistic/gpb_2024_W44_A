@@ -24,7 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bearbeiten_speichern'
     <title>Notizy</title>
 </head>
 <body style="font-family: Arial; background-color: #87CEEB; margin: 0; padding: 0;">
-    <h1 style="text-align: center; color: #333; padding: 20px 0; margin: 0; background-color: white;">NotizY</h1>
+    <div>
+		<img src="logo.png" alt="NotizY" height="120">
+	</div>
     <div style="display: flex; margin: 20px; gap: 20px; height: calc(100vh - 100px);">
         <!-- Linke Spalte: Liste der Notizen -->
         <div style="flex: 1; background: white; padding: 20px; overflow-y: auto;">
